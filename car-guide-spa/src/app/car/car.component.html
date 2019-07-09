@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-2 mt-3 ml-3">
+    <app-brand-nav></app-brand-nav>
+  </div>
+  <div class="col-md-9">
+      <a *ngIf="isLoggedIn()" [routerLink]="[ '/caradd']" class="btn btn-primary mt-2 col-md-2">Add Car</a>
+    <div class="row">
+      
+      <div class="mt-3 ml-2" *ngFor="let car of cars">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{car.photoUrl}}">
+          <img class="card-img-top" *ngIf="!car.photoUrl"
+            src="https://www.bmw.co.uk/model-selection/image-thumb__16852__960x540/2Series_Coupe_1920x1080.jpeg?1549294935"
+            alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"><a routerLink="/detail/{{car.id}}">{{car.brandName + " " + car.modelName}}</a></h5>
+            <p class="card-text">{{car.description}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Release Year : </strong>{{car.releaseYear}}</li>
+            <li class="list-group-item"><strong>BodyType : </strong>{{car.bodyType}}</li>
+          </ul>
+          <div class="card-body">
+            <a routerLink="/detail/{{car.id}}" class="card-link">Car Detail</a>
+            <a href="#" class="card-link">Delete Car</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

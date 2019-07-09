@@ -1,0 +1,26 @@
+<h4 class="pb-2" style="text-align: center;">Car Brands</h4>
+<div id="accordion">
+  <div class="card-header" id="">
+    <h5 class="mb-0">
+      <a class="btn btn-link" [routerLink]="[ '/car' ]">
+        ALL CARS
+      </a>
+    </h5>
+  </div>
+  <div *ngFor="let brand of brands; let i = index" class="card">
+    <div class="card-header" id="">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" (click)="collapse(i)" (click)="fillModels(brand.id)"
+          data-toggle="collapse" aria-expanded="false" aria-controls="collapseThree">
+          {{brand.name}}
+        </button>
+      </h5>
+    </div>
+    <div *ngFor="let model of modelsByBrand" id="collapseThree" class="collapse"
+      [ngClass]="{'show': collapseStep === 'collapsedStep'+i}" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+        <a routerLink="/car/model/{{model.id}}">{{model.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>

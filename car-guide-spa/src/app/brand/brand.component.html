@@ -1,0 +1,91 @@
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteBrandModal" tabindex="-1" role="dialog" aria-labelledby="deleteBrandModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteBrandModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to delete brand named {{brand?.name}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary">Close</button>
+        <a type="submit" class="btn btn-primary" (click)="deleteBrand(brand?.id)" data-dismiss="modal">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Delete Modal End -->
+
+<!-- Add Modal End -->
+<div class="modal fade" id="addBrandModal" tabindex="-1" role="dialog" aria-labelledby="addBrandModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addBrandModalLabel">New Brand</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label for="" class="col-form-label">Brand Name</label>
+          <input type="text" [(ngModel)]="brandName" class="form-control" id="name">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="onSubmit()">Create Brand</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add Modal End -->
+
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-3">
+      <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#addBrandModal">Create
+        Brand</button>
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <h4 class="fc-header-title">Brands</h4>
+
+      <div class="table-responsive">
+        <table class="table text-center">
+          <thead class="text-uppercase bg-primary">
+            <tr class="text-white">
+
+              <th scope="col">Brand</th>
+              <th scope="col">Delete</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of brands">
+              <td class=""><a routerLink="/brand/model/{{item.id}}">{{item.name}}</a></td>
+              <td>
+                <button type="button" (click)="setValueFromModal(item)" class="btn btn-danger" data-toggle="modal"
+                  data-target="#deleteBrandModal">Delete</button>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

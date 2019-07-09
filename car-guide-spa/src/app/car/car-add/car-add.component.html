@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto mt-3">
+      <h4 class="title">Add New Car</h4>
+      <form [formGroup]="carAddForm" (ngSubmit)="add()">
+        <div class="form-group">
+          <label for="">Select Brand</label>
+          <select class="form-control" (change)="getModelsByBrand($event.target.value)" formControlName="brandId" id="">
+            <option *ngFor="let item of brands" [value]="item.id">{{item.name}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Select Model {{brandId}}</label>
+          <select class="form-control" id="" formControlName="modelId">
+            <option *ngFor="let item of models" [value]="item.id">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Enter Release Year</label>
+          <input type="number" class="form-control" formControlName="releaseYear" id="" placeholder="Release Year">
+        </div>
+        <div class="form-group">
+          <label for="">Select Body-Type</label>
+          <select class="form-control" id="" formControlName="bodyType">
+            <option>HatchBack</option>
+            <option>Sedan</option>
+            <option>MPV</option>
+            <option>SUV</option>
+            <option>Crossover</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Description</label>
+          <textarea class="form-control" id="" rows="3" formControlName="description"
+            placeholder="You can write notes here"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!carAddForm.valid">Submit</button>
+        <h6>{{ carAddForm.value | json }}</h6>
+        <h6>{{ carAddForm.status | json }}</h6>
+        <h6>{{car |json}}</h6>
+      </form>
+    </div>
+  </div>
+</div>
